@@ -1,0 +1,4 @@
+# uv lockfile initial placeholder
+version = 1
+revision = 1
+requires-python = '>=3.14'
