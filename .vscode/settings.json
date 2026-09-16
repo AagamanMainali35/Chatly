@@ -1,0 +1,16 @@
+{
+    "cSpell.words": [
+        "asyncpg",
+        "corsheaders",
+        "joinedload",
+        "momoskar",
+        "onupdate",
+        "pkey",
+        "pwdlib",
+        "pycache",
+        "redoc",
+        "selectinload",
+        "sessionmaker",
+        "sqlalchemy"
+    ]
+}
