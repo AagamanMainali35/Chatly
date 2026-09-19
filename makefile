@@ -9,3 +9,12 @@ mm:
 
 mig:
 	$(ALEMBIC) upgrade head
+
+rollback:
+	$(ALEMBIC) downgrade -1
+
+migration-history:
+	$(ALEMBIC) history
+
+migration-current:
+	$(ALEMBIC) current
