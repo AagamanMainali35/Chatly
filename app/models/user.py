@@ -9,3 +9,5 @@ class User(Base, TimestampMixin):
     email: Mapped[str] = mapped_column(nullable=False)
     password: Mapped[str] = mapped_column(nullable=False)
     profile_picture: Mapped[str | None] = mapped_column(nullable=True)
+
+# Model definitions for User entity
