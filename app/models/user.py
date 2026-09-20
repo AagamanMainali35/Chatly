@@ -11,3 +11,10 @@ class User(Base, TimestampMixin):
     profile_picture: Mapped[str | None] = mapped_column(nullable=True)
 
 # Model definitions for User entity
+from pydantic import BaseModel, EmailStr
+
+class UserCreateSchema(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+    profile_picture: str | None = None
