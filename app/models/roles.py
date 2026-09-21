@@ -10,6 +10,9 @@ class Role(Base, TimestampMixin):
     __tablename__ = "roles"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
+    users: Mapped[list["User"]] = relationship(
+        back_populates="role",
+    )
     permissions: Mapped[list["Permissions"]] = relationship(
         back_populates="roles",
         secondary="role_permissions"
