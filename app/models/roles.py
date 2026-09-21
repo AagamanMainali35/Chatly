@@ -12,3 +12,18 @@ class Permissions(Base, TimestampMixin):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(TEXT, nullable=False)
     code_name: Mapped[str] = mapped_column(String(100))
+
+role_permissions = Table(
+    "role_permissions",
+    Base.metadata,
+    Column(
+        "role_id",
+        ForeignKey("roles.id"),
+        primary_key=True
+    ),
+    Column(
+        "permission_id",
+        ForeignKey("permissions.id"),
+        primary_key=True
+    )
+)
