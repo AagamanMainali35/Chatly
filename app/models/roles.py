@@ -42,3 +42,10 @@ role_permissions = Table(
         primary_key=True
     )
 )
+
+from pydantic import BaseModel, ConfigDict
+
+class RoleResponse(BaseModel):
+    id: int
+    name: str
+    permissions: list[dict] | None = []
