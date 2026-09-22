@@ -71,3 +71,7 @@ class permissionResponse(BaseModel):
     id: int
     name: str
     code_name: str
+
+class PermissionUpdate(BaseModel):
+    name: str | None = None
+    code_name: str | None = None
