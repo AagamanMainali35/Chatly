@@ -66,3 +66,8 @@ class permission(BaseModel):
 
 class PermissionIDsRequest(BaseModel):
     permissions_ids: list[int]
+
+class permissionResponse(BaseModel):
+    id: int
+    name: str
+    code_name: str
