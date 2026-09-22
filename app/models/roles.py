@@ -52,3 +52,10 @@ class RoleResponse(BaseModel):
     model_config = ConfigDict(
         from_attributes=True
     )
+
+class RoleCreate(BaseModel):
+    name: str
+    permissions: list[int] | None = []
+    model_config = ConfigDict(
+        from_attributes=True
+    )
