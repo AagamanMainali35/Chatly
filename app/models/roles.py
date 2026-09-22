@@ -59,3 +59,7 @@ class RoleCreate(BaseModel):
     model_config = ConfigDict(
         from_attributes=True
     )
+
+class permission(BaseModel):
+    name: str
+    code_name: str
