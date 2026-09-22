@@ -63,3 +63,6 @@ class RoleCreate(BaseModel):
 class permission(BaseModel):
     name: str
     code_name: str
+
+class PermissionIDsRequest(BaseModel):
+    permissions_ids: list[int]
