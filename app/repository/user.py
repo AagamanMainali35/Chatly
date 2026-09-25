@@ -30,3 +30,8 @@ async def create_users(payload: dict, db: AsyncSession):
     result = await db.execute(query)
     await db.commit()
     return result.scalar_one()
+
+async def get_user_by_id(id: int, db: AsyncSession):
+    query = select(User).where(User.id == id)
+    result = await db.execute(query)
+    return result.scalar_one_or_none()
