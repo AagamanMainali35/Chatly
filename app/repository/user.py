@@ -23,3 +23,10 @@ async def get_user_by_username_or_email(
     query = select(User).where(or_(*conditions))
     result = await db.execute(query)
     return result.scalar_one_or_none()
+
+async def create_users(payload: dict, db: AsyncSession):
+    "Query function to insert a new user in the database"
+    query = insert(User).values(**payload).returning(User)
+    result = await db.execute(query)
+    await db.commit()
+    return result.scalar_one()
