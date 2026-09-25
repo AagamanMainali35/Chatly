@@ -6,3 +6,20 @@ async def get_users(db: AsyncSession):
     query = select(User)
     result = await db.execute(query)
     return result.scalars().all()
+
+async def get_user_by_username_or_email(
+    username: str | None,
+    email: str | None,
+    db: AsyncSession
+):
+    "search the db for a user with matching email or username"
+    if not username and not email:
+        return None
+    conditions = []
+    if username:
+        conditions.append(User.username == username)
+    if email:
+        conditions.append(User.email == email)
+    query = select(User).where(or_(*conditions))
+    result = await db.execute(query)
+    return result.scalar_one_or_none()
