@@ -27,3 +27,20 @@ class RoleService:
         if not existing_role:
             raise HTTPException(detail="Role with this id does not exist", status_code=404)
         return existing_role
+
+    async def delete_role(self, role_id: int):
+        existing_role = await fetch_role_by_id(id=role_id, db=self.db)
+        if not existing_role:
+            raise HTTPException(detail="Role with this id does not exist", status_code=404)
+        await delete_role_repo(id=role_id, db=self.db)
+        return {"message": "Role deleted successfully"}
+
+    async def update_role(self, role_id: int, role: dict):
+        existing_role = await fetch_role_by_id(id=role_id, db=self.db)
+        if not existing_role:
+            raise HTTPException(detail="Role with this id does not exist", status_code=404)
+        permissions = role.pop("permissions", None)
+        if permissions is not None:
+            role["permissions"] = permissions
+        result = await update_role(id=role_id, payload=role, db=self.db)
+        return result
