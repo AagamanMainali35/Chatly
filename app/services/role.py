@@ -17,3 +17,13 @@ class RoleService:
             role["permissions"] = permissions
         result = await insert_role(payload=role, db=self.db)
         return result
+
+    async def get_all_roles(self):
+        result = await fetch_roles(db=self.db)
+        return result
+
+    async def get_role_by_id(self, role_id: int):
+        existing_role = await fetch_role_by_id(id=role_id, db=self.db)
+        if not existing_role:
+            raise HTTPException(detail="Role with this id does not exist", status_code=404)
+        return existing_role
