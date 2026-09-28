@@ -15,3 +15,13 @@ class UserService:
             raise HTTPException(status_code=400, detail=message)
         hashed_password = hash_password(password)
         return hashed_password
+
+    async def register_user(self, payload: dict):
+        search_user = await get_user_by_username_or_email(
+            username=payload["username"], email=payload["email"], db=self.db
+        )
+        if search_user is not None:
+            raise HTTPException(
+                status_code=409,
+                detail="User already exists",
+            )
