@@ -14,3 +14,7 @@ async def register(
     print(payload)
     return await UserService(db=db).register_user(
         payload=payload.model_dump(exclude_unset=True))
+
+@router.post("/login")
+async def login(db: AsyncSession = Depends(get_db)):
+    ...
