@@ -1,10 +1,12 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.config.database import get_db
 from app.models.user import UserCreateSchema
 from app.services.user import UserService
 
 router = APIRouter()
+
 
 @router.post("/register")
 async def register(
@@ -16,9 +18,13 @@ async def register(
         payload=payload.model_dump(exclude_unset=True))
 
 @router.post("/login")
-async def login(db: AsyncSession = Depends(get_db)):
+async def register(db:AsyncSession=Depends(get_db)):
     ...
 
 @router.post("/change-password")
-async def change_password(db: AsyncSession = Depends(get_db)):
+async def register(db:AsyncSession=Depends(get_db)):
+    ...
+    
+@router.post("/reset-password")
+async def register(db:AsyncSession=Depends(get_db)):
     ...
