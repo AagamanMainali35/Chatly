@@ -18,3 +18,7 @@ async def register(
 @router.post("/login")
 async def login(db: AsyncSession = Depends(get_db)):
     ...
+
+@router.post("/change-password")
+async def change_password(db: AsyncSession = Depends(get_db)):
+    ...
