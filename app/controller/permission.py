@@ -10,3 +10,8 @@ permission_router = APIRouter(prefix="/permissions")
 async def get_permissions(db: AsyncSession = Depends(get_db)):
     result = await PermissionService(db=db).get_permissions()
     return result
+
+@permission_router.post("/ids", response_model=list[permissionResponse])
+async def get_permissions_by_ids(ids: PermissionIDsRequest, db: AsyncSession = Depends(get_db)):
+    result = await PermissionService(db=db).get_permissions_by_ids(ids=ids.permissions_ids)
+    return result
