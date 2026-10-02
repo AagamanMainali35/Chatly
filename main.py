@@ -1,3 +1,6 @@
+from starlette.middleware.base import BaseHTTPMiddleware
+from app.utils.auth import decode_token
+from fastapi import HTTPException
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,3 +20,20 @@ async def health():
         status_code=200,
         content="Up and running"
     )
+
+public_paths = [
+    '/',
+    '/docs',
+    '/redoc',
+    '/register',
+    '/login',
+    '/change-password',
+    '/forget-password',
+    "/openapi.json",
+]
+
+class AuthMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        if request.url.path in public_paths:
+            return await call_next(request)
+        return await call_next(request)
