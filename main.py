@@ -10,3 +10,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+@app.get("/health", tags=["health"])
+async def health():
+    return JSONResponse(
+        status_code=200,
+        content="Up and running"
+    )
