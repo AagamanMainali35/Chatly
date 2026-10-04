@@ -18,3 +18,6 @@ migration-history:
 
 migration-current:
 	$(ALEMBIC) current
+
+commit:
+	GIT_AUTHOR_DATE="$(DATE)" GIT_COMMITTER_DATE="$(DATE)" git commit -m "$(MESSAGE)"
