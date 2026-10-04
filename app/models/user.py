@@ -24,7 +24,6 @@ class UserCreateSchema(BaseModel):
     username:str
     email:EmailStr
     password:str
-    profile_picture:str|None=None
     
 
 
