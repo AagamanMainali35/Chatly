@@ -11,6 +11,7 @@
         "redoc",
         "selectinload",
         "sessionmaker",
-        "sqlalchemy"
+        "sqlalchemy",
+        "uploadfileobj"
     ]
 }
