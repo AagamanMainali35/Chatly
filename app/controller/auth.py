@@ -15,7 +15,7 @@ async def register(
     db: AsyncSession = Depends(get_db),
     profile_picture:UploadFile=File()
 ):
-    payload=UserCreateSchema.model_validate()
+    payload=UserCreateSchema.model_validate(payload)
     return await UserService(db=db).register_user(
         payload=payload.model_dump(exclude_unset=True),file=profile_picture)
 

@@ -1,5 +1,6 @@
 from pwdlib import PasswordHash
 from jwt import encode, decode, ExpiredSignatureError, InvalidTokenError
+from pydantic import ValidationError
 from app.config.database import get_db
 from app.config.settings import settings
 from fastapi import Depends, HTTPException , Request
@@ -7,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from fastapi.security import HTTPBearer
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from app.models.user import User
+from app.models.user import User, UserCreateSchema
 import re
 
 scheme = HTTPBearer()
@@ -75,6 +76,23 @@ def validate_password(password: str):
 
     return True, "Password is valid"
     
+    
+from fastapi import Form
+
+def get_user_payload(
+    username: str = Form(...),
+    email: str = Form(...),
+    password: str = Form(...),
+):
+    try:
+        return UserCreateSchema(
+            username=username,
+            email=email,
+            password=password,
+        )
+    except ValidationError as e:
+            raise HTTPException(status_code=400 , detail=e.errors())
+        
     
 async def get_current_user(
     request: Request,
