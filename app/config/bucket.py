@@ -18,7 +18,7 @@ class StorageClient:
         
         self.public_client=boto3.client(
             "s3",
-            endpoint_url=str(settings.s3_public_endpoint or settings.s3_endpoint),
+            endpoint_url=str(settings._s3_endpoint),
             aws_access_key_id=settings.s3_access_key,
             aws_secret_access_key=settings.s3_secret_key,
             region_name=self.region
